@@ -59,23 +59,3 @@ public class BudgetCategoryService {
     }
 
 }
-
-
-// Service (API & Web Service) -> DB (Postgresql)
-//  1.Controller (İstekleri karşılayan yer)
-//            - Request & Response & DTO (Data Transfer Object)
-//  2.Service (İsteği alır ve business logic'e göre istenilen işlemi yapar)
-//  3.Repository & DAO : Data Access Object (Database'e erişim sağladığımız yer. Select & Update & Insert)
-//  4.Entity (Database'deki hangi tablo java'daki hangi object'e karşılık geldiği tanım.) (Object Relational Mapping)
-
-// projedeki eksikler
-// SSpring Exception Handlingpring Schema Validation
-//  (Fırlattıgımız hataları düzgün bir şekilde yönetmek)
-// Basic Authentication (Spring Security) Api'mizi korumak için (Diğer auth yöntemleri -> OAuth1 - OAuth3 - Bearer Token (JWT))
-// Convertor
-
-// araştırma konuları
-// Solid prensipleri
-// Clean code özetini oku (https://medium.com/@busrauzun/clean-code-kitabindan-notlar-1-temiz-kod-derken-44e6f7a27eb0)
-// Design Patterns (refactoring.guru)
-// Http Status Code'lar hakkında genel bilgi (200,201,202(başarılı responselarda)  400,401,403,404,405(request'te bir sıkıntı var)  500'lüler (hatalar için))
