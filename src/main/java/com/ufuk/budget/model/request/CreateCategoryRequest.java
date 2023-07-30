@@ -5,6 +5,18 @@ public class CreateCategoryRequest {
     private Double amount;
     private Integer userId;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public String getName() {
         return name;
     }

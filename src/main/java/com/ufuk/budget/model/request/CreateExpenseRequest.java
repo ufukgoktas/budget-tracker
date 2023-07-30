@@ -8,6 +8,22 @@ public class CreateExpenseRequest {
     private LocalDate date;
     private Integer categoryId;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public String getName() {
         return name;
     }

@@ -1,9 +1,16 @@
 package com.ufuk.budget.entity;
 
-import javax.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity(name = "user")
-@SequenceGenerator(name = "id_generator", sequenceName = "seq_user", allocationSize = 1)
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity(name = "customer")
+@Data
+@NoArgsConstructor
+@SequenceGenerator(name = "id_generator", sequenceName = "seq_customer", allocationSize = 1)
 public class User {
 
     @Id
@@ -22,6 +29,12 @@ public class User {
 
     @Column(name = "total_budget",nullable = false)
     private Double totalBudget = 0.0;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles",joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id"))
+
+    private List<Role> roles= new ArrayList<>();
 
     public Integer getId() {
         return id;

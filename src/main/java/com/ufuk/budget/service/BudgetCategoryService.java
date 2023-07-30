@@ -3,6 +3,7 @@ package com.ufuk.budget.service;
 import com.ufuk.budget.entity.BudgetCategory;
 import com.ufuk.budget.entity.User;
 import com.ufuk.budget.model.dto.BudgetCategoriesDto;
+import com.ufuk.budget.exception.NotFoundException;
 import com.ufuk.budget.model.request.UpdateCategoryRequest;
 import com.ufuk.budget.model.request.CreateCategoryRequest;
 import com.ufuk.budget.repository.BudgetCategoriesRepository;
@@ -47,15 +48,13 @@ public class BudgetCategoryService {
     }
 
     public void updateCategories(UpdateCategoryRequest request) {
-        Optional<BudgetCategory> budgetCategoriesOptional = budgetCategoriesRepository.findById(request.getCategoryId());
-        if (budgetCategoriesOptional.isPresent()) {
-            BudgetCategory categories = budgetCategoriesOptional.get();
-            categories.setName(request.getName());
-            categories.setAmount(request.getAmount());
-            budgetCategoriesRepository.save(categories);
-        } else {
-            throw new IllegalStateException("Categories not found with ID: " + request.getCategoryId());
-        }
+        BudgetCategory category = budgetCategoriesRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new NotFoundException("Categories not found with ID: " + request.getCategoryId()));
+
+        category.setName(request.getName());
+        category.setAmount(request.getAmount());
+        budgetCategoriesRepository.save(category);
     }
+
 
 }

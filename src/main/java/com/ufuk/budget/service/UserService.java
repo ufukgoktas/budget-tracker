@@ -2,6 +2,7 @@ package com.ufuk.budget.service;
 
 import com.ufuk.budget.entity.User;
 import com.ufuk.budget.model.dto.UserDto;
+import com.ufuk.budget.exception.NotFoundException;
 import com.ufuk.budget.model.request.CreateUserRequest;
 import com.ufuk.budget.model.request.UpdateUserRequest;
 import com.ufuk.budget.repository.UserRepository;
@@ -45,17 +46,15 @@ public class UserService {
     }
 
     public void updateUser(UpdateUserRequest request) {
-        Optional<User> userOptional = userRepository.findById(request.getUserId());
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            user.setName(request.getName());
-            user.setEmail(request.getEmail());
-            user.setPassword(request.getPassword());
-            user.setTotalBudget(request.getTotalBudget());
-            userRepository.save(user);
-        } else {
-            throw new IllegalStateException("User not found with ID: " + request.getUserId());
-        }
+        User user = userRepository.findById(request.getUserId())
+                .orElseThrow(() -> new NotFoundException("User not found with ID: " + request.getUserId()));
+
+        user.setName(request.getName());
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+        user.setTotalBudget(request.getTotalBudget());
+        userRepository.save(user);
     }
+
 
 }
